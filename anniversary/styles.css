@@ -1,0 +1,558 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fefefe;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #ff9999, #ff66b2);
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+/* Main Content Styles */
+main {
+    padding: 10px;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+}
+
+/* Gallery Styles */
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Creates a responsive grid */
+    gap: 15px; /* Space between images */
+}
+
+.gallery-images img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover; /* Ensures the image covers the space while maintaining aspect ratio */
+}
+
+.gallery-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Map Styles */
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.location {
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    margin: 30px 0;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    background: #ff66b2;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.line {
+    width: 2px;
+    height: 50px;
+    background: #ff66b2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.info-box {
+    display: none;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+}
+
+.info-box img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+/* Favorites Styles */
+.favorites-content {
+    background: #fffbe6;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Footer Styles */
+footer {
+    background: #ff9999;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries for larger screens */
+@media (min-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    section {
+        margin-bottom: 30px;
+    }
+
+    .timeline-card {
+        width: 300px;
+    }
+
+    .line {
+        height: 2px;
+        width: 50px;
+        top: 15px; /* Adjust for positioning */
+    }
+
+    .map-container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .location {
+        margin: 0;
+    }
+}
+
+/* Timeline Styles */
+.timeline-content {
+    display: flex; /* Use flexbox for horizontal layout */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px 20px; /* Padding on the edges */
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+}
+
+.timeline-card {
+    opacity: 0; /* Start hidden for fade-in effect */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Fade-in and slide-up animation */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 250px; /* Increased width for larger cards */
+    margin: 0 15px; /* Slightly increased space between cards */
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    scroll-snap-align: start; /* Snap to start of each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
+}
+
+.timeline-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.timeline-card.visible {
+    opacity: 1; /* Make visible */
+    transform: translateY(0); /* Slide into place */
+}
+
+.timeline-image {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Optional: Media queries for responsiveness */
+@media (max-width: 768px) {
+    .timeline-content {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+
+    .timeline-card {
+        width: 180px; /* Adjust card width for smaller screens */
+    }
+}
+
+/* Body and General Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Main font */
+    background-color: #fefefe;
+    color: #333; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Timeline Styles */
+.timeline-content {
+    display: flex; /* Use flexbox for horizontal layout */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px 20px; /* Padding on the edges */
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+}
+
+.timeline-card {
+    opacity: 0; /* Start hidden for fade-in effect */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Fade-in and slide-up animation */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 250px; /* Increased width for larger cards */
+    margin: 0 15px; /* Slightly increased space between cards */
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    scroll-snap-align: start; /* Snap to start of each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
+    color: #444; /* Card text color */
+}
+
+.timeline-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.timeline-card.visible {
+    opacity: 1; /* Make visible */
+    transform: translateY(0); /* Slide into place */
+}
+
+.timeline-image {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Month Name Styles */
+.timeline-month {
+    font-family: 'Dancing Script', cursive; /* Different font for month names */
+    font-size: 1.5rem; /* Increase font size */
+    color: #ff66b2; /* Color for month names */
+    margin-bottom: 5px; /* Space below month name */
+}
+
+/* Optional: Media queries for responsiveness */
+@media (max-width: 768px) {
+    .timeline-content {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+
+    .timeline-card {
+        width: 180px; /* Adjust card width for smaller screens */
+    }
+}
+
+/* Body and General Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Main font */
+    background-color: #fefefe;
+    color: #333; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Section Heading Styles */
+h2 {
+    font-family: 'Quicksand', sans-serif; /* Cute font for headings */
+    font-size: 2rem; /* Font size for headings */
+    color: #ff66b2; /* Color for headings */
+    margin-bottom: 15px; /* Space below headings */
+    text-align: center; /* Center the headings */
+}
+
+/* Timeline Styles */
+.timeline-content {
+    display: flex; /* Use flexbox for horizontal layout */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px 20px; /* Padding on the edges */
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+}
+
+.timeline-card {
+    opacity: 0; /* Start hidden for fade-in effect */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Fade-in and slide-up animation */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 250px; /* Increased width for larger cards */
+    margin: 0 15px; /* Slightly increased space between cards */
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    scroll-snap-align: start; /* Snap to start of each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
+    color: #444; /* Card text color */
+}
+
+.timeline-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.timeline-card.visible {
+    opacity: 1; /* Make visible */
+    transform: translateY(0); /* Slide into place */
+}
+
+.timeline-image {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Month Name Styles */
+.timeline-month {
+    font-family: 'Dancing Script', cursive; /* Different font for month names */
+    font-size: 1.75rem; /* Increase font size */
+    color: #ff66b2; /* Color for month names */
+    margin-bottom: 5px; /* Space below month name */
+}
+
+/* Optional: Media queries for responsiveness */
+@media (max-width: 768px) {
+    .timeline-content {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+
+    .timeline-card {
+        width: 180px; /* Adjust card width for smaller screens */
+    }
+}
+
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden; /* Hide overflow */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mySlides {
+    display: none; /* Hide all slides by default */
+    text-align: center; /* Center text */
+}
+
+.mySlides img {
+    width: 100%; /* Responsive image */
+    border-radius: 10px;
+}
+
+.caption {
+    padding: 10px;
+    font-family: 'Quicksand', sans-serif; /* Use the cute font */
+    font-size: 2rem; /* Adjust font size */
+    color: #ff66b2; /* Cute color */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    border-radius: 5px;
+    display: inline-block; /* Inline-block to fit content */
+    margin-top: 10px; /* Space above caption */
+}
+
+/* Navigation Arrows */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none; /* Prevent text selection */
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+}
+
+/* Dots */
+.dots-container {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb; /* Default dot color */
+    border-radius: 50%; /* Circular dots */
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #ff66b2; /* Highlight color */
+}
+
+/* Favorite Moments Section Styles */
+#favorites {
+    background-color: #ffe6f2; /* Light pink background for the section */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+}
+
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden; /* Hide overflow */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* White background for the container */
+}
+
+.mySlides {
+    display: none; /* Hide all slides by default */
+    text-align: center; /* Center text */
+    background-color: #fffbf0; /* Light beige background for each slide */
+    padding: 20px; /* Padding around each slide */
+    border-radius: 10px; /* Rounded corners for slides */
+}
+
+.mySlides img {
+    width: 100%; /* Responsive image */
+    border-radius: 10px;
+}
+
+.caption {
+    padding: 10px;
+    font-family: 'Quicksand', sans-serif; /* Use the cute font */
+    font-size: 1.2rem; /* Adjust font size */
+    color: #ff66b2; /* Cute color */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    border-radius: 5px;
+    display: inline-block; /* Inline-block to fit content */
+    margin-top: 10px; /* Space above caption */
+}
+
+/* Timeline Section Styles */
+#timeline {
+    background-color: #f0f8ff; /* Light blue background for the timeline section */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+}
+
+/* Timeline Cards */
+.timeline-card {
+    background-color: #fff; /* White background for cards */
+    border-radius: 10px; /* Rounded corners for cards */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px;
+    margin: 10px; /* Margin between cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Slideshow Section Styles */
+#favorites {
+    background-color: #ffe6f2; /* Light pink background for the favorites section */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden; /* Hide overflow */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* White background for the container */
+}
+
+/* Slideshow Slides */
+.mySlides {
+    display: none; /* Hide all slides by default */
+    text-align: center; /* Center text */
+    background-color: #fffbf0; /* Light beige background for each slide */
+    padding: 20px; /* Padding around each slide */
+    border-radius: 10px; /* Rounded corners for slides */
+}
+
+.mySlides img {
+    width: 100%; /* Responsive image */
+    border-radius: 10px;
+}
+
+.caption {
+    padding: 10px;
+    font-family: 'Quicksand', sans-serif; /* Use the cute font */
+    font-size: 1.2rem; /* Adjust font size */
+    color: #ff66b2; /* Cute color */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    border-radius: 5px;
+    display: inline-block; /* Inline-block to fit content */
+    margin-top: 10px; /* Space above caption */
+}
